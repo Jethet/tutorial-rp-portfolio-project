@@ -4,19 +4,14 @@ from . import CommentForm
 
 def blog_index(request):
     posts = Post.objects.all().order_by('-created_on') # most recent first
-    context = {
-        'posts': posts,
-    }
+    context = {'posts': posts}
     return render(request, 'blog_index.html', context)
 
 def blog_category(request):
     posts = Post.objects.filter(
         categories_name_contains=category
     ).order_by('-created_on')
-    context = {
-        'category': category,
-        'posts': posts,
-    }
+    context = {'category': category, 'posts': posts}
     return render(request, 'blog_category.html', context)
 
 def blog_detail(request, pk):
@@ -34,8 +29,5 @@ def blog_detail(request, pk):
             comment.save()
 
     comments = Comment.objects.filter(post=post)
-    context = {
-        'post': post,
-        'comments': comments,
-    }
+    context = {'post': post, 'comments': comments, 'form': form}
     return render(request, 'blog_detail.html', context)

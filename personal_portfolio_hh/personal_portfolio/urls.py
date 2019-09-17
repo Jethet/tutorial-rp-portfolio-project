@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from projects import views  #this is added because the home view is in projects views.py
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.home, name='home'),  # this is added for the homepage
     path('projects/', include('projects.urls')),
     path('blog/', include('blog.urls')),
 ]

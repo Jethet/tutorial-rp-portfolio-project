@@ -23,7 +23,7 @@ def blog_detail(request, pk):
             comment = Comment(
                 author=form.cleaned_data['author'],
                 body=form.cleaned_data['body'],
-                post=post
+                post=post,
             )
             comment.save()
 
